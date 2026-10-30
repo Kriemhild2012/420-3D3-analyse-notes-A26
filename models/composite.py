@@ -4,9 +4,8 @@ from abc import ABC, abstractmethod
 class Composite(Composant, ABC):
     """Nœud intermédiaire — délègue à ses enfants."""
 
-    def __init__(self, nom: str, type_noeud: str):
+    def __init__(self, nom: str):
         super().__init__(nom)
-        self.type_noeud = type_noeud
         self._enfants: list[Composant] = []
 
     def ajouter(self, enfant: Composant) -> None:
@@ -25,7 +24,7 @@ class Composite(Composant, ABC):
 
     def to_dict(self) -> dict:
         return {
-            "type": self.type_noeud,
+            "type": self.__class__.__name__.lower(),  # ← "groupecours", "session", etc.
             "nom": self.nom,
             "moyenne": self.moyenne(),
             "nb_etudiants": self.nb_etudiants(),
