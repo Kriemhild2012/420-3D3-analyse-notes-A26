@@ -16,3 +16,12 @@ class Session:
 
     def nb_etudiants(self) -> int:
         return sum(g.nb_etudiants() for g in self.groupes)
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "session",
+            "nom": self.nom,
+            "moyenne": self.moyenne(),
+            "nb_etudiants": self.nb_etudiants(),
+            "enfants": [g.to_dict() for g in self.groupes]
+        }
