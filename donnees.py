@@ -3,6 +3,7 @@ from models.groupe_cours import GroupeCours
 from models.session import Session
 from models.cours import Cours
 from models.programme import Programme
+from models.departement import Departement
 
 
 def construire_programme() -> Programme:
@@ -54,9 +55,13 @@ def construire_programme() -> Programme:
     cours_3r1 = Cours("3R1 — Réseaux informatiques")
     cours_3r1.ajouter(session_3r1_a26)
 
+    # --- Départements ---
+    departement_info = Departement("Département de l'informatique")
+    departement_info.ajouter(cours_3d3)
+    departement_info.ajouter(cours_3r1)
+
     # --- Programme ---
     programme = Programme("Techniques de l'informatique")
-    programme.ajouter(cours_3d3)
-    programme.ajouter(cours_3r1)
+    programme.ajouter(departement_info)
 
     return programme

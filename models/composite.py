@@ -1,5 +1,9 @@
+from typing import override
+from typing import Any
+
 from models.composant import Composant
-from abc import ABC, abstractmethod
+from abc import ABC
+
 
 class Composite(Composant, ABC):
     """Nœud intermédiaire — délègue à ses enfants."""
@@ -14,14 +18,17 @@ class Composite(Composant, ABC):
     def retirer(self, enfant: Composant) -> None:
         self._enfants.remove(enfant)
 
+    @override
     def moyenne(self) -> float:
         if not self._enfants:
             return 0.0
         return round(sum(e.moyenne() for e in self._enfants) / len(self._enfants), 1)
 
+    @override
     def nb_etudiants(self) -> int:
         return sum(e.nb_etudiants() for e in self._enfants)
 
+    @override
     def to_dict(self) -> dict:
         return {
             "type": self.__class__.__name__.lower(),  # ← "groupecours", "session", etc.
