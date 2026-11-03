@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 class Composant(ABC):
 
     def __init__(self, nom: str):
-        self.nom = nom
+        self.nom: str = nom
 
     @abstractmethod
     def moyenne(self) -> float:
